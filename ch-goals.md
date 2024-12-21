@@ -7,7 +7,7 @@
 
 ## What are myappmaker goals?
 
-It is important to keep in mind the goals of the project, so it can be properly developed towards them. Knowing the goals of a project not only provides more context into what it is meant to become in the future, but also more information about how its design must be kept to ensure the software stays healthy and maintainable and its development is also healthy and sustainable.
+It is important to keep in mind the goals of the project, so it can be properly developed towards them. Knowing the goals of a project not only provides more context into what it is meant to become in the future, but also more information about how its design must be adhered to ensuring the software stays healthy and maintainable and its development is also healthy and sustainable.
 
 myappmaker goals are:
 
@@ -34,6 +34,8 @@ There are even more important reasons for this goal, though:
 We never know from which direction innovation and new developments/contributions will come, so it is vital that we do not exclude this kind of environment as well.
 
 Projects from the Indie Python project themselves are the result of many hardware limitations faced by me (Kennedy). Were not for such limitations, those project would likely have been built on top of more complex and resource-demanding libs/frameworks and be subject to many overengineered design decisions that would exclude a lot of people reliant on low-spec hardware.
+
+Further note that the Raspberry Pi is a potential development system, and even more likely deployment platform.
 
 
 
