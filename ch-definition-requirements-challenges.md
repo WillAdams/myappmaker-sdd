@@ -9,11 +9,11 @@ Before learning about myappmaker's design we must know what it is supposed to be
 
 ## myappmaker's definition
 
-myappmaker is an app maker tool consisting of a graphical application that relies on many different low-code/no-code interfaces to allow users to create their own desktop applications, including a drag-and-drop interface and a block coding interface. It is a Python desktop application built on top of the PySide6 GUI framework, meant to run in any platform that supports the reference implementation of the Python programming language ([GitHub repo](https://github.com/python/cpython) | [website](https://python.org)).
+myappmaker is an app maker tool consisting of a graphical application that relies on low-code/no-code interfaces to allow users to create their own desktop applications, including a drag-and-drop interface and a block coding interface. It is a Python desktop application built on top of the PySide6 GUI framework, meant to run on any platform that supports the reference implementation of the Python programming language ([GitHub repo](https://github.com/python/cpython) | [website](https://python.org)).
 
 In addition to that, its block coding interface should be able to take advantage of Python and its many libraries.
 
-Why another app builder? Because even though many other app builder software exist today, regardless of their easy-of-use and how intuitive they are for users, they present many crucial limitations. First of all, many of them are paid, which, despite not being a problem per se, prevents access to the tool by many people who can't afford the prices. They also are often made available only as web/cloud or mobile apps. On top of leaving users overly dependent on such platforms, this also prevents people from taking advantage of their plenty capable, often faster, computers. A standalone desktop app would give users much more freedom and performance.
+Why another app builder? Because even though many other app builder software exist today, regardless of their ease-of-use and how intuitive they are for users, they present many crucial limitations. First of all, many of them are commercial/paid software, which, despite not being a problem per se, prevents access to the tool by many people who can't afford the prices. They also are often made available only as web/cloud or mobile apps. On top of leaving users overly dependent on such platforms, this also prevents people from taking advantage of their plenty capable, often faster, computers. A standalone desktop app would give users much more freedom and performance.
 
 Just like any software under the Indie Python project, myappmaker would also be 100% free, open-source and not in control of any organization that could pull it away from users.
 
@@ -24,52 +24,44 @@ These requirements/nice-to-haves are listed here with no particular structure. S
 
 All of these requirements and discussions on them are gathered here as a means to keep track of them as we analyse, integrate and refine them into an unified cohesive design.
 
-The original idea and requirements for myappmaker were gathered from posts by Mr. William Adams on Hacker News and sometimes in discussions on channels of the Indie Python project, like its Discord server.
+The original idea and requirements for myappmaker were gathered from posts on Hacker News and sometimes in discussions on channels of the Indie Python project, such as its Discord server.
 
-Here's an initial list of requirements:
+Initial list of requirements:
 
-- allowed drawing a user interface as naturally as in Altsys Virtuoso (or Macromedia Freehand)
-- allowed programming the UI as naturally as HyperCard (and to a lesser extent Lisp)- was as visual as Google's Blockly/BlockSCAD
-- exposed variables in a mechanism like to OpenSCAD's Customizer
+- drawing a user interface as naturally as in a specialized drawing program (examples include Inkscape, Adobe Illustrator, Macromedia Freehand)
+- programming the UI as naturally as-is possible (examples include the HyperTalk language in HyperCard, or AppleScript (and to a lesser extent Lisp) with some aspects being presented visually as in Scratch or Google's Blockly)
+- have a pane or other area for variables since the act of drawing does not instantiate variables (an example of this would be OpenSCAD's Customizer)
 - a standalone app
-- could create standard GUI elements
-- had a decent library of packages which could be imported at need
+- could create standard GUI elements (buttons, text editing fields, drop-down menus, &c.)
+- a decent library of packages which could be imported at need
 - SVG output --- being able to save a program as an SVG visual representation would be _huge_ for documentation
-- METAPOST --- there isn't a graphical tool for this, and it is incredibly powerful, and I think if there was a graphical editor which used .mp as its/a source format that would be incredibly powerful,
-- Bézier curve support --- these allow drawing essentially anything, and including them as an object/element type would ensure pretty much anything anyone could envision could be drawn
-- Futurewave Smartsketch/Flash --- as noted above, this drawing tool became an animation/scripting solution, but the drawing mechanism in it was quite innovative and elegant, and it would be awesome to see that brought back --- there is an opensource tool hoeing this row: https://www.wickeditor.com/#/
-- accessibility --- the ideal, if I understand correctly, would be something like to https://beeware.org/project/projects/libraries/toga/ since it uses native objects on each platform, but I think this tool would be important enough to folks who want something like it that they would be willing to forgo this, so long as it was made clear as a limitation up-front- possibility of running on either Chrome OS or Android (or even iPad?) --- there are a lot of school systems which provide such to students and being able to offer an option for education, esp. if you're willing to set up a support system for schools could be _huge_
-- Raspberry Pi --- the new 5 seems an incredible value, and there's a nifty new tablet version of it which raises one kind of wild possibility:
-- LCARS --- "Library Computer Access and Retrieval System", this is the computer "interface" shown on _Star Trek: The Next Generation_ and later shows --- having this GUI toolkit as a potential development platform would be a great way to differentiate this project, and I would like to think, generate a lot of interest, and harvest a lot of potential energy and development fervor
-- the Raspberry Pi 5 tablet is the Pilet: https://soulscircuit.com/pilet
-- the idea is that the LCARS interface be a development target/one of multiple (if possible)
-GUI toolkits which are supported
+  - METAPOST (consider as a possible model or reference) --- there isn't a graphical tool for this, and it is incredibly powerful, and if there was a graphical editor which used .mp as its/a source format that would be incredibly powerful (it is possible, or even likely that METAPOST support would be something done in a reference implementation/example program/standard library)
+  - Bézier curve support (pretty much a requirement for SVG) --- these allow drawing essentially anything, and including them as an object/element type would ensure pretty much anything anyone could envision could be drawn
+  - simple drawing/editing of vectors --- one example of an elegant and user-friendly user interfrace for this is Futurewave Smartsketch/Flash. Interestingly, this drawing tool became an animation/scripting solution, so arguably one description of this project might be "Flash successor" --- note that there is an opensource tool which is implementing this drawing model: https://www.wickeditor.com/#/
+- accessibility --- the ideal, would be something like to https://beeware.org/project/projects/libraries/toga/ since it uses native objects on each platform, but this tool should be important enough to folks who want something like it that giving up accessibility would be an acceptable trade-off, (naturally, if this is the case it will be made clear as a limitation up-front
+- possibility of running on either Chrome OS or Android (or even iPad?) --- there are a lot of school systems which provide such to students and being able to offer an option for education, esp. if it would be possible to set up a support system for schools could be _huge_
+- Raspberry Pi --- the new 5 seems an incredible value, and there is a nifty new tablet version of it which raises one kind of wild possibility:
+  - LCARS --- "Library Computer Access and Retrieval System", this is the computer "interface" shown on _Star Trek: The Next Generation_ and later shows --- having this GUI toolkit as a potential development platform would be a great way to differentiate this project, and possibly generate a lot of interest, and harvest a lot of potential energy and development fervor (the Raspberry Pi 5 tablet in question is the Pilet: https://soulscircuit.com/pilet )
+- Themes --- note that the LCARS interface as a development target would beone of multiple (if possible) GUI toolkits which are supported
 
-Additional comments from Mr. Adams received via email:
+Additional thoughts and considerations (originally from a private e-mail):
 
-> For Altsys Virtuoso/Macromedia Freehand don't worry too much --- they were just mentioned as drawing programs which I am most familiar with/use the most --- Inkscape affords most of the features which they do, so check it out if you're not using it already. As noted, the interesting drawing model was Futurewave Smartsketch/Splash Animator/Flash which shows in:https://www.wickeditor.com/#/
-> 
-> That said, I don't know that complicated drawing facilities will be needed --- certainly HyperCard/LiveCode didn't have them, though maybe one thing to research, just to be aware of it as a metric to measure against and to contrast against would be SVG with embedded JavaScript as an interactive format --- consider these drawings:
-> 
-> https://raw.githubusercontent.com/shapeoko/Docs/1c2ceb2f7fca11a4895ef3aeddd9d03976b21139/content/tPictures/PS20029-100.svg
-> https://raw.githubusercontent.com/shapeoko/Docs/1c2ceb2f7fca11a4895ef3aeddd9d03976b21139/content/tPictures/PS20022-100.svg
-> 
-> Once upon a time they allowed clicking on the parts list which would then highlight the matching parts in the diagram --- I guess if you enabled javascript interactivity in a modern browser they would still work.
+One early decision will need to be what drawing features are initially available. It seems uncertain that complicated drawing facilities will be needed/required --- certainly HyperCard/LiveCode did not have overly complex drawing capabilities, but one possible avenue of research, just to be aware of it as a metric to measure against and to contrast against would be SVG with embedded JavaScript as an interactive format --- consider these drawings:
+ 
+https://raw.githubusercontent.com/shapeoko/Docs/1c2ceb2f7fca11a4895ef3aeddd9d03976b21139/content/tPictures/PS20029-100.svg
+https://raw.githubusercontent.com/shapeoko/Docs/1c2ceb2f7fca11a4895ef3aeddd9d03976b21139/content/tPictures/PS20022-100.svg
 
-> My thoughts on output formats:
-> 
-> - SVG w/ Javascript might be one option --- if it can be allowed to run in modern browsers
-> - HTML w/ Javascript --- at one time Livecode was targeting that --- perhaps this could be done using WEBASM or some similar technology?
-> - a .py file which is stand-alone and would run from any Python install (of a supported version of Python)
-> - a .py file and a folder of support files such as pixel images (which could then be run using a supported version of Python)
-> - some sort of compiled file which could then be run using a separate application as a HyperCard "stack" could be run using the HyperCard "Player"
-> - a traditional compiled file (.exe for Windows, .app for Mac OS, some sort of executable for Linux --- LiveCode was able to do that
+(from the instructions for the Shapeoko 2 CNC machine)
 
-> I would be satisfied with any sort of setup where it was possible to:
-> 
-> - visually layout the window of a program
-> - interactively select elements of the program and code up behaviours and functionality
-> - compile/export the program into some sort of file which could then be uploaded to GitHub (along with the source) and from their either run (say HTML web page w/ Javascript on a Github.io linked page) or to a .py file (with additional resources), or some sort of compiled file w/ runtime if need be
+At the time of their creation  allowed clicking on the parts list which would then highlight the matching parts in the diagram --- presumably if javascript interactivity were enabled in a modern browser they would still work.
+
+Possible output formats are pretty obvious --- compiling to HTML or SVG with Javascript would be the easiest deployment, but technically complex, writing out a stand-alone .py file would be a welcome option but may only work for a simplistic subset of the application's capabilities, and as noted elsewhere the native fileformat will be a .zip archive with identifying file extension which the development environment would be able to "play".
+
+A basic workflow/set of functions:
+ 
+- visually layout the window of a program
+- interactively select elements of the program and code up behaviours and functionality
+- compile/export the program into some sort of file which could then be uploaded to GitHub (along with the source) and from there either run (say HTML web page w/ Javascript on a Github.io linked page) or to a .py file (with additional resources), or some sort of compiled file w/ runtime if need be
 
 The requirements related to mobile/browser support were later deemed as nice-to-haves and postponed to a distant future, though, as made evident by this email exchange:
 
@@ -81,25 +73,24 @@ Of course there are ways to integrate Python into these environments. However, w
 
 In our conversations, Mr. Adams also mentioned Godot and gdscript as technologies he's been keeping an eye out for, given its wide range of applications, like its usage for UI programming in screens from Tesla vehicles. Despite being a game engine and not an app builder, Godot's versatility sets it as a great inspiration for app builder projects. As a matter of fact, not being in the category of app builder software doesn't make Godot any less suitable for app making. In fact, many business and developers use it to develop all kinds of applications, like [Pixelorama](https://github.com/Orama-Interactive/Pixelorama), for instance.
 
-Finally, in order to convey his expectations regarding the appearance of the app, Mr. Adams mentioned how hand-drawn appearances are pleasing, popular and helpful for representing UI:
+Note for a drawing program, hand-drawn appearances are pleasing, popular and helpful for representing UI, with a hand-drawn appearance often noted as an aid to discussing UI mockups:
+ 
+https://news.ycombinator.com/item?id=40540952
+ 
+It may be that some sort of ability to "theme" drawings or change the appearance of drawn elements en masse might be helpful --- a drawing tool which had an interface and featureset which allowed for this sort of thing was Creaturehouse Expression (which was published by Fractal Design, and which was last available from Microsoft):
+ 
+https://www.pcmag.com/archive/creature-house-expression-3-161253
 
-> ...a more interesting thing is a hand-drawn appearance is often an aid to discussing UI mockups:
-> 
-> https://news.ycombinator.com/item?id=40540952
-> 
-> so some sort of ability to "theme" drawings or change the appearance of drawn elements en masse might be helpful --- a drawing tool which I think of fondly, and which may be worth looking at would be Creaturehouse Expression (which was published by Fractal Design, and which was last available from Microsoft):
-> 
-> https://www.pcmag.com/archive/creature-house-expression-3-161253
-
+where it was possible to select a stroke/curve/geometric shape/outline and assign to it a visual appearance/skin which could then be changed.
 
 ## myappmaker design challenges
 
 
 ### HyperCard achievements and the search for app making solutions
 
-As often pointed out by Mr. Adams, "what does an algorithm look like?".
+A question which has been asked in the past is "what does an algorithm look like?". It may be that this application will explore that question and may possibly provide an answer, at least for some users.
 
-Setting out to define and publish a tool as a way to make apps is much more than gathering requirements and putting them on paper. It is a great first step, though, which is what this document is all about. However, how to guarantee that our design will appeal to people? How to guarantee that people will feel comfortable using it? How we'll make it intuitive for them?
+Setting out to define and publish a tool as a way to make apps is much more than gathering requirements and putting them on paper. It is a great first step, though, which is what this document is all about. However, how to guarantee that our design will appeal to people? How to guarantee that people will feel comfortable using it? How could we make it intuitive for them?
 
 Turns out, we may never truly achieve such heights. That's cause what may be intuitive to someone, may not be as intuitive or intuitive at all to another person. I know virtually all software suffers from this problem, but still, the problem seems to be more severe when it comes to app building. Why? Because so many models exist and were tried before and yet a lot of them failed. Projects that relied on them were discontinued or superseded by software entirely different and those same software that came after still present many of previous problems and limitations, and new problems as well.
 
@@ -116,7 +107,7 @@ Despite being regarded as a precursor to the web, webpages don't offer any of th
 
 ### The achievements and limitations of other app builders
 
-Many other app builder software exist today, with varying degrees of similiraty to HyperCard or no similarity whatsoever. Regardless of their easy-of-use and how intuitive they are for users, they present many crucial limitations. These limitation were already present previously on this chapter when we defined myappmaker. That is, many of them are paid, which, despite not being a problem per se, prevents access to the tool by many people who can't afford the prices. They are also often made available only as web/cloud or mobile apps which on top of leaving users overly dependent on such platforms, also prevents people from taking advantage of their plenty capable, often faster, computers.
+Many other app builder software exist today, with varying degrees of similarity to HyperCard or no similarity whatsoever. Regardless of their ease-of-use and how intuitive they are for users, they present many crucial limitations. These limitation were already presented previously in this chapter when we defined myappmaker. That is, many of them are paid, which, despite not being a problem per se, prevents access to the tool by many people who can't afford the prices. They are also often made available only as web/cloud or mobile apps which on top of leaving users overly dependent on such platforms, also prevents people from taking advantage of their plenty capable, often faster, computers.
 
 Such app builders also exist under the control and for the benefit of the organizations that created them or funded their creation. Again, this is not a problem per se, but it robs agency of the users/community, which may see the project discontinued or adopt changes or pricing that do not take the best interest of the userbase into consideration.
 
@@ -136,7 +127,7 @@ First of all, it helps to remember the software design pattern called MVC (model
 > 
 > Traditionally used for desktop graphical user interfaces (GUIs), this pattern became popular for designing web applications. Popular programming languages have MVC frameworks that facilitate the implementation of the pattern.
 
-Rather than help the user build the entire app, many applications aid the user in creating/defining one of these components. That is, we take interest not only in app builders, but also what we call here "partial" app builders. From my experience, this part they use to build is usually the view/interface. Sometimes the generated interface can be used as-is in the final app, only requiring that the underlying logic is added to it. Sometimes it servers only as a representation used to convey information to other people that want to understand and/or implement the interface or another component (e. g.: the model) of the app.
+Rather than help the user build the entire app, many applications aid the user in creating/defining one of these components. That is, we take interest not only in app builders, but also what we call here "partial" app builders. From my experience, this part they use to build is usually the view/interface. Sometimes the generated interface can be used as-is in the final app, only requiring that the underlying logic is added to it. Sometimes it serves only as a representation used to convey information to other people that want to understand and/or implement the interface or another component (e. g.: the model) of the app.
 
 Qt Designer is a graphical user interface designer app, not an app builder. It means it aids the user in building the view/interface of the app and the output interface can be used as-is in the final application. In fact, not touching the generated UI is the recommended way of using Qt Designer because it promotes complete separation between presentation/interface and underlying logic, not unlike how HTML and CSS are supposed to be separated from Javascript in webpages.
 
@@ -160,7 +151,7 @@ Although I don't share the author's sentiments regarding attempts to revive Hype
 
 At 34 years old this year (2024), I started using computers and the internet at a time where we still used dial-up internet and CRT monitors. I also feel a much greater gap when it comes to understanding and appreciating technology between myself and people 10-15 years younger than I feel between me and people 30 years older or more. In other words, I believe technology has been changing so fast recently that a few years are enough to make people feel different about how they regard and approach technology.
 
-That's why, as an open-source maintainer, I want to offer a solution that catters to all ages if possible. Not only mine, nor solely for people younger nor older than me. The question posed at the beginning of this section, proposed by Mr. Adams is even more relevant when we take this challenge into consideration. "What does an algorithm look like?". All of this greatly influences many of the design decisions made for myappmaker (many of which already discussed and approved by Mr. Adams via email).
+That's why, as an open-source maintainer, I want to offer a solution that catters to all ages if possible. Not only mine, nor solely for people younger nor older than me. The question posed at the beginning of this section, is even more relevant when we take this challenge into consideration. "What does an algorithm look like?". All of this greatly influences many of the design decisions made for myappmaker (many of which already discussed).
 
 Looking back at the apps mentioned in this section, there's always a lack of something or a drawback, or at least, something to be desired. And I don't hold these negative points against such apps or their creators or the designs behind them. Such gaps are the result of how challenging it is to design app builders (or partial app builders).
 
@@ -210,7 +201,7 @@ We didn't integrate AI and related tech into Indie Python projects yet. We inten
 
 ### The ability to draw the interfaces
 
-Getting back to the topic of designing UI interfaces, Mr. Adams also suggested via email how useful the ability to draw common interface elements is also helpful and even mentioned the usage of pencil and graph paper as well, pointing out how incongruent it is to ask people designing apps to start with those tools and yet not being offered tooling that translates such designs into real apps:
+Getting back to the topic of designing UI interfaces, the ability to draw common interface elements is very helpful and some programming tools for visual interfaces are sufficiently arcane that usage of pencil and graph paper is often suggested as a starting point, which is somewhat incongruous that people designing apps be asked to start with those tools and yet not being offered tooling that translates such designs into real apps:
 
 > Being able to draw things out is a huge leg up for folks who are visually oriented, and also helps novices who have not yet developed a facility for mapping a textual representation to the matching GUI layout.
 > 
@@ -249,15 +240,15 @@ In other words, you can think of cards/frames/pages as "flattened" versions of c
 
 In addition to the illustrations presented earlier, an analogy may also help to further cement the difference between finite/static elements like frames/cards/pages/etc. and dynamic elements like contexts: a theater. In theaters, there's only a single stage, the people acting and the props. The stage is always the same, only the people and props change from scene to scene. So in a way, it is as though theaters operate with a single card/frame/page. However, this card/frame/page changes constantly, that is, present different contexts. Therefore, the concept of cards/frames/pages are more closely related to the concept of a stage, whereas the scenes are more closely related to contexts.
 
-Frameworks for creating apps that are made for programmers, like Qt (and its Python bindings like PyQT and PySide), don't need to worry about the difference between frames and context, cause their users are programmers and they have much more control over all the system via their code. Frameworks made for non-programmers don't have that luxury, so the web and HyperCard use more simple, finite and atomic representations of their content (pages and cards). Even so, a programmer using a webpage can use Javascript to make that same page more dynamic and instead of relying on several pages the programmer can have lots of contents delivered dynamically on that page as the user interacts with it.
+Frameworks for creating apps that are made for programmers, like Qt (and its Python bindings like PyQT and PySide), don't need to worry about the difference between frames and context, because their users are programmers and they have much more control over all the system via their code. Frameworks made for non-programmers don't have that luxury, so the web and HyperCard use more simple, finite and atomic representations of their content (pages and cards). Even so, a programmer using a webpage can use Javascript to make that same page more dynamic and instead of relying on several pages the programmer can have lots of contents delivered dynamically on that page as the user interacts with it.
 
-Is the Javascript solution better than dividing that same page into several pages? There's no definitive answer to that: it varies on a case-by-case basis. One would assume the Javascript solution to be better, after all its control is more fine-grained. However, it also usually requires more maintenance and changing it may be more costly than simply adding another page. Also, again, finite and more static elements like pages are much more easier to deal with, produce and present to the end user.
+Is the Javascript solution better than dividing that same page into several pages? There's no definitive answer to that: it varies on a case-by-case basis. One would assume the Javascript solution to be better, after all its control is more fine-grained. However, it also usually requires more maintenance and changing it may be more costly than simply adding another page. Also, again, finite and more static elements like pages are much easier to deal with, produce and present to the end user.
 
-Getting back to our theater analogy, nowadays more modern theaters can also switch between different stages (more precisely, we have a single [revolving stage](https://en.wikipedia.org/wiki/Revolving_stage)), in which case, we could say these ones also operate similarly to cards/frames/pages. That is, instead of using a single stage (card) and changing only the people/props (context), they use multiple stages (cards), switching between them. Even so, nothing prevents people directing the play from changing the same stage in real time for a particular dramatic scene (perhaps a prop moves, or some effect is used), as though switching contexts but staying on the same card/frame/page.
+Getting back to our theater analogy, nowadays more modern theaters can also switch between different stages (more precisely, we have a single [revolving stage](https://en.wikipedia.org/wiki/Revolving_stage)), in which case, we could say these also operate similarly to cards/frames/pages. That is, instead of using a single stage (card) and changing only the people/props (context), they use multiple stages (cards), switching between them. Even so, nothing prevents people directing the play from changing the same stage in real time for a particular dramatic scene (perhaps a prop moves, or some effect is used), as though switching contexts but staying on the same card/frame/page.
 
 That's why both concepts of finite static elements (cards/frames/pages) and dynamic elements (contexts) are valuable and should be used together. However, it is much easier to think of a card/frame/page having different contexts/configurations than it is to think of a context being present in different cards/frames/pages. Again, that's because, I believe, contexts are more fine-grained, and thus more suitable as main organizing elements of apps.
 
-Adding to the discussion regarding the difference between cards/frames/pages and contexts, I'd say every card/frame/page is a context. However, sometimes the context is much more than that. That's cause cards/frames/pages are static finite elements, but contexts, being dynamic, may represent different cards/frames/pages in different time intervals. Thus the context is both a card/frame/page, but also can be more than that. Usually, when we think of switching to another card or to another page, we think about changing to another completely different view, whereas when we think of switching contexts, we think of changes in more subtle ways.
+Adding to the discussion regarding the difference between cards/frames/pages and contexts, I'd say every card/frame/page is a context. However, sometimes the context is much more than that. That's because cards/frames/pages are static finite elements, but contexts, being dynamic, may represent different cards/frames/pages in different time intervals. Thus the context is both a card/frame/page, but also can be more than that. Usually, when we think of switching to another card or to another page, we think about changing to another completely different view, whereas when we think of switching contexts, we think of changes in more subtle ways.
 
 I think some apps can rely solely on the concept of cards/frames/pages, but many apps would need a more subtle way to manage their complexity, since sometimes the creator would like to specific behaviour to take place on that same card/frame/page, thus representing a change in context, not in the card/frame/page. 
 
@@ -274,7 +265,7 @@ A lot of software systems exist that approach different problems very cleverly b
 
 If an app maker doesn't provide interfaces and tools that are simple enough for non-programmers or programmers with little experience to use, then what's the point of its existence? If people will struggle too much to learn and employ the needed skills to make apps, then they are better off giving up and learning to program instead.
 
-Thus, the path of making an app for non-programmers is even more unforgiven.
+Thus, the path of making an app for non-programmers is even more unforgiving.
 
 
 ### Conclusion: how to unify these concerns?
@@ -285,11 +276,11 @@ The challenge is then in proposing a new app builder tool that has something dif
 
 As we saw in the definition of myappmaker, its main tools are no-code/low-code interfaces to help users with little to no programming experience still feel empowered to create their own apps. The main interfaces are a drag-and-drop interface for laying out the UI elements and another for block coding in order to provide the logic of the app. Other tools may be integrated in the future, but those main interfaces should provide everything that's needed for building apps.
 
-A key to keep the challenge of building an app maker manageable is regular testing with the target userbase. This way, instead of spending more time theorizing about the different existing approaches, we test the different approaches used as we integrate them, guaranteeing the different interfaces/features added along the way offer at least some sort of value for the people using the app and preventing it from becoming a bloated collection of unused/obscure app making tools.
+A key to keep the challenge of building an app maker manageable is regular testing with the target userbase. This way, instead of spending more time theorizing about the different existing approaches, we test the different approaches used as we integrate them, guaranteeing the different interfaces/features added along the way which offer at least some sort of value for the people using the app and preventing it from becoming a bloated collection of unused/obscure app making tools.
 
-Both drag-and-drop and block coding interfaces are generally regarded as helpful and useful by people with little to no programming experience, including children, which make them great candidates as main interfaces for an app builder tool. Drag-and-drop in particular is used in all of the apps mentioned here, such as HyperCard, Decker, Figma and Qt Designer.
+Both drag-and-drop and block coding interfaces are generally regarded as helpful and useful by people with little to no programming experience, including children, which make them great candidates as main interfaces for an app builder tool. Drag-and-drop in particular is used in all of the apps mentioned here, such as HyperCard, Decker, Figma and Qt Designer. A notable consideration is that the pallets from which elements are selected/dragged makes for a discoverable feature-set, removing the need to memorize many commands or even terminology.
 
-Additionally, even though those interfaces are not innovative, the way they are implemented, that is, in a standalone free-of-chage and open-source desktop app and the way they are developed, that is, as an open-source project, help to differentiate them enough so they become a suitable answer to the challenge of making an app builder tool. And it also justifies its existence.
+Additionally, even though those interfaces are not innovative, the way they are implemented, that is, in a standalone free-of-charge and open-source desktop app and the way they are developed, that is, as an open-source project, help to differentiate them enough so they become a suitable answer to the challenge of making an app builder tool. And it also justifies its existence.
 
 Although, of course, no tool needs a formal justification to exist. Even tools created merely for fun may offer interesting and even useful perspectives as they approach previous problems in different ways. Here we just offer these explanations as to emphasize our care and understanding of the challenge of approaching the creation of an app making tool.
 
