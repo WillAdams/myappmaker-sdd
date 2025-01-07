@@ -55,7 +55,7 @@ https://raw.githubusercontent.com/shapeoko/Docs/1c2ceb2f7fca11a4895ef3aeddd9d039
 
 At the time of their creation they allowed clicking on the parts list at the right of the drawing which would then highlight the matching parts in the diagram --- presumably if javascript interactivity were enabled in a modern browser they would still work.
 
-Possible output formats are pretty obvious --- compiling to HTML or SVG with Javascript would be the a simple and potentially widespread deployment, but architecturarlly technically complex, writing out a stand-alone .py file would be a welcome option but may only work for a simplistic subset of the application's capabilities, and as noted elsewhere the native fileformat will be a .zip archive with identifying file extension which the development environment would be able to "play".
+Possible output formats are pretty obvious --- compiling to HTML or SVG with Javascript would be a simple and potentially widespread deployment, but architecturarlly technically complex, writing out a stand-alone .py file would be a welcome option but may only work for a simplistic subset of the application's capabilities, and as noted elsewhere the native fileformat will be a .zip archive with identifying file extension which the development environment would be able to "play".
 
 A basic workflow/set of functions:
  
